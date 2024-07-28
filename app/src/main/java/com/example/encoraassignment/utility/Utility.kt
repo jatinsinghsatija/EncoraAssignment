@@ -51,8 +51,6 @@ object Utility {
             this.collectionName=model.imCollection?.collectionImName
             this.collectionTerm=model.imCollection?.imContentType?.contentTerm
             this.collectionLabel=model.imCollection?.imContentType?.contentLabel
-            this.linkTitle=model.previewLink?.title
-            this.href=model.previewLink?.href
 
         }
     }

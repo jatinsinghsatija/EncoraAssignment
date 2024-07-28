@@ -52,10 +52,6 @@ class SongsModel : Serializable {
     var image170: String? = null
     @ColumnInfo(name = "collectionName")
     var collectionName: String? = null
-    @ColumnInfo(name = "linkTitle")
-    var linkTitle: String? = null
-    @ColumnInfo(name = "href")
-    var href: String? = null
 
 
     @ColumnInfo(name = "collectionTerm")
