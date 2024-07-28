@@ -50,13 +50,15 @@ class SongsModel : Serializable {
     var image60: String? = null
     @ColumnInfo(name = "image170")
     var image170: String? = null
-    @ColumnInfo(name = "collectionName")
-    var collectionName: String? = null
+    //@ColumnInfo(name = "collectionName")
+    //var collectionName: String? = null
+    @ColumnInfo(name = "audioRef")
+    var audioRef: String? = null
 
 
-    @ColumnInfo(name = "collectionTerm")
-    var collectionTerm: String? = null
+    //@ColumnInfo(name = "collectionTerm")
+    //var collectionTerm: String? = null
 
-    @ColumnInfo(name = "collectionLabel")
-    var collectionLabel: String? = null
+    //@ColumnInfo(name = "collectionLabel")
+    //var collectionLabel: String? = null
 }

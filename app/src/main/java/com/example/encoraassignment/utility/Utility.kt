@@ -48,9 +48,10 @@ object Utility {
             this.rights=model.rights
             this.releaseDate=model.imReleaseDate
             this.content=model.content
-            this.collectionName=model.imCollection?.collectionImName
-            this.collectionTerm=model.imCollection?.imContentType?.contentTerm
-            this.collectionLabel=model.imCollection?.imContentType?.contentLabel
+            //this.collectionName=model.imCollection?.collectionImName
+            this.audioRef=model.link?.firstOrNull { it.title.equals("preview",true) }?.href
+            //this.collectionTerm=model.imCollection?.imContentType?.contentTerm
+            //this.collectionLabel=model.imCollection?.imContentType?.contentLabel
 
         }
     }
