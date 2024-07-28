@@ -15,6 +15,7 @@ import com.example.encoraassignment.databinding.ActivityDetailBinding
 import com.example.encoraassignment.localDB.SongsModel
 import com.example.encoraassignment.utility.MediaPlay
 import com.example.encoraassignment.utility.MediaPlay.Companion.play
+import com.example.encoraassignment.utility.Utility.openUrl
 
 import com.squareup.picasso.Picasso
 
@@ -38,7 +39,9 @@ class DetailFragment(val song: SongsModel?) : Fragment() {
 
     fun setData() {
         binding.title.text = song?.name ?: ""
-        binding.description.text = Html.fromHtml(song?.content ?: "", Html.FROM_HTML_MODE_LEGACY)
+        binding.artists.text="Artists: ${song?.artist?:""}"
+        binding.price.text="Price: $${song?.amount?:""}"
+        binding.copyright.text=song?.rights?:""
         Picasso.get().load(song?.image170 ?: "").into(binding.image)
         onClicks()
     }
@@ -46,6 +49,10 @@ class DetailFragment(val song: SongsModel?) : Fragment() {
     fun onClicks(){
         binding.back.setOnClickListener {
             activity?.onBackPressed()
+        }
+
+        binding.title.setOnClickListener {
+            song?.songId?.openUrl()
         }
         binding.playStop.setOnClickListener {
             if (played) {

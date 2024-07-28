@@ -2,11 +2,14 @@ package com.example.encoraassignment.utility
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.encoraassignment.localDB.SongsModel
 import com.example.encoraassignment.model.Entry
+import com.example.encoraassignment.utility.GlobalCache.Companion.globalContext
 import com.example.encoraassignment.view.activity.MainActivity
 import com.example.encoraassignment.view.fragments.DetailFragment
 import com.example.encoraassignment.view.fragments.ListFragment
@@ -29,31 +32,45 @@ object Utility {
         }
     }
 
-    fun Entry.toSongsModel():SongsModel{
-        val model=this
+    fun Entry.toSongsModel(): SongsModel {
+        val model = this
         return SongsModel().apply {
-            this.songId=model.entryId
-            this.amount=model.imPrice?.amount
-            this.currency=model.imPrice?.currency
-            this.title=model.title
-            this.name=model.imName
-            this.categoryId=model.category?.imId
-            this.term=model.category?.categoryTerm
-            this.label=model.category?.categoryLabel
-            this.scheme=model.category?.scheme
-            this.image55=model.imImages?.get(0)?.url
-            this.image60=model.imImages?.get(1)?.url
-            this.image170=model.imImages?.get(2)?.url
-            this.artist=model.imArtist
-            this.rights=model.rights
-            this.releaseDate=model.imReleaseDate
-            this.content=model.content
+            this.songId = model.entryId
+            this.amount = model.imPrice?.amount
+            this.currency = model.imPrice?.currency
+            this.title = model.title
+            this.name = model.imName
+            this.categoryId = model.category?.imId
+            this.term = model.category?.categoryTerm
+            this.label = model.category?.categoryLabel
+            this.scheme = model.category?.scheme
+            this.image55 = model.imImages?.get(0)?.url
+            this.image60 = model.imImages?.get(1)?.url
+            this.image170 = model.imImages?.get(2)?.url
+            this.artist = model.imArtist
+            this.rights = model.rights
+            this.releaseDate = model.imReleaseDate
+            this.content = model.content
             //this.collectionName=model.imCollection?.collectionImName
-            this.audioRef=model.link?.firstOrNull { it.title.equals("preview",true) }?.href
+            this.audioRef = model.link?.firstOrNull { it.title.equals("preview", true) }?.href
             //this.collectionTerm=model.imCollection?.imContentType?.contentTerm
             //this.collectionLabel=model.imCollection?.imContentType?.contentLabel
 
         }
+    }
+
+    fun String?.openUrl() {
+        this?.let {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(it)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            try {
+                globalContext.startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(globalContext, "Application not found", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     fun getTopActivity(): Activity? {
@@ -81,7 +98,7 @@ object Utility {
         addToBackStack: Boolean = true
     ) {
         getTopActivity()?.let {
-            val act=it as MainActivity
+            val act = it as MainActivity
             navigateFragment(
                 act = act,
                 fm = act.supportFragmentManager,
@@ -95,7 +112,7 @@ object Utility {
         }
     }
 
-    fun List<Entry>?.getFirst20():List<Entry>?{
+    fun List<Entry>?.getFirst20(): List<Entry>? {
         return this?.take(20)
     }
 
