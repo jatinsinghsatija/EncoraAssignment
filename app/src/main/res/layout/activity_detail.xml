@@ -16,15 +16,29 @@
             android:layout_width="match_parent"
             android:scaleType="centerCrop"
             android:layout_height="match_parent"/>
-
         <ImageView
-            android:id="@+id/play_stop"
+            android:id="@+id/back"
             android:layout_width="30dp"
             android:scaleType="centerCrop"
-            android:src="@android:drawable/ic_media_play"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:background="@drawable/button_back"
+            android:backgroundTint="@color/white"
+            app:tint="@color/black" />
+        <ImageView
+            android:id="@+id/play_stop"
+            android:layout_width="50dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_media_play"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
-            app:tint="@android:color/holo_red_dark" />
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_back"
+            app:tint="@color/design_default_color_primary" />
     </RelativeLayout>
 
     <TextView
@@ -35,14 +49,12 @@
         android:text="Title"
         android:layout_marginTop="5dp"
         android:textColor="@color/black"
-        android:textSize="16sp"/>
+        android:textSize="18sp"/>
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Decription"
-        android:layout_marginTop="5dp"
-        android:textColor="@android:color/darker_gray"/>
+        android:text="Decription"/>
 
 </LinearLayout>
 </layout>

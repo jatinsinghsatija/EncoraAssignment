@@ -2,8 +2,25 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.fragments.ListFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="iTunes Store: Top Songs"
+            android:padding="10dp"
+            android:textSize="20sp"/>
+
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="0dp"
+    android:layout_weight="1"/>
+    </LinearLayout>
+
 </layout>

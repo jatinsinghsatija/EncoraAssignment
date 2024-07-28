@@ -40,7 +40,13 @@ class DetailFragment(val song: SongsModel?) : Fragment() {
         binding.title.text = song?.name ?: ""
         binding.description.text = Html.fromHtml(song?.content ?: "", Html.FROM_HTML_MODE_LEGACY)
         Picasso.get().load(song?.image170 ?: "").into(binding.image)
+        onClicks()
+    }
 
+    fun onClicks(){
+        binding.back.setOnClickListener {
+            activity?.onBackPressed()
+        }
         binding.playStop.setOnClickListener {
             if (played) {
                 binding.playStop.setImageResource(android.R.drawable.ic_media_play)
@@ -53,7 +59,6 @@ class DetailFragment(val song: SongsModel?) : Fragment() {
             }
         }
     }
-
     override fun onDetach() {
 
         super.onDetach()

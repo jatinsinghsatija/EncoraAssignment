@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.encoraassignment.R
 import com.example.encoraassignment.adapter.ListAdapter
 import com.example.encoraassignment.databinding.ActivityListBinding
@@ -41,7 +42,7 @@ class ListFragment : Fragment(), CallbackListener {
             if(it is MainActivity){
                 it.model._list.observe(viewLifecycleOwner, Observer { entries ->
                     val adapter=ListAdapter(entries, this)
-                    binding.list.layoutManager = GridLayoutManager(context, 2)
+                    binding.list.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
                     binding.list.adapter = adapter
                 })
                 it.model.hitAPI()

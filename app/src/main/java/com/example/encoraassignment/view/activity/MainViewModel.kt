@@ -16,26 +16,30 @@ import java.lang.Exception
 
 class MainViewModel : ViewModel() {
 
+    private val title = MutableLiveData<String>()
     private val list = MutableLiveData<List<SongsModel>>()
     val _list: LiveData<List<SongsModel>>
         get() = list
+    val _title: LiveData<String>
+        get() = title
 
     fun hitAPI() {
-            APICalls.demoAPI(object : CallbackListener{
-                override fun demoAPISuccess(result: List<SongsModel>?) {
-                    DialogManager.hideDialog()
-                    result?.let {
-                        list.value=it
-                    }
+        APICalls.demoAPI(object : CallbackListener {
+            override fun demoAPISuccess(result: List<SongsModel>?) {
+                DialogManager.hideDialog()
+                result?.let {
+                    list.value = it
                 }
+            }
 
-                override fun demoAPIFailure(exp: Exception) {
-                    DialogManager.hideDialog()
-                    Utility.getTopActivity()?.let {
-                        Toast.makeText(it, exp.localizedMessage ?: "", Toast.LENGTH_SHORT).show()
-                    }
+
+            override fun demoAPIFailure(exp: Exception) {
+                DialogManager.hideDialog()
+                Utility.getTopActivity()?.let {
+                    Toast.makeText(it, exp.localizedMessage ?: "", Toast.LENGTH_SHORT).show()
                 }
-            })
+            }
+        })
 
     }
 }

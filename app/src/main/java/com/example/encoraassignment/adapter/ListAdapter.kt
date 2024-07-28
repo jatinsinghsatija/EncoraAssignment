@@ -12,7 +12,8 @@ import com.example.encoraassignment.model.Entry
 import com.squareup.picasso.Picasso
 
 
-class ListAdapter(dataList: List<SongsModel>, listener:CallbackListener) : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class ListAdapter(dataList: List<SongsModel>, listener: CallbackListener) :
+    RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     private val mDataList: List<SongsModel>
     private val mListener: CallbackListener
 
@@ -45,9 +46,10 @@ class ListAdapter(dataList: List<SongsModel>, listener:CallbackListener) : Recyc
         }
 
         fun bind(data: SongsModel) {
-            data.image170?.let{
+            data.image170?.let {
                 Picasso.get().load(it).into(binding.item)
             }
+            binding.title.text = data.name ?: ""
             binding.item.setOnClickListener {
                 mListener.demoItemClick(data)
             }
